@@ -1,8 +1,9 @@
 # Binary
 cartesian
 
-# Coverage files
+# Tests files
 coverage.out
+*testing.db
 
 # Database Data
 data/.mysql-data

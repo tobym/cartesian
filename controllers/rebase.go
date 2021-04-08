@@ -3,6 +3,7 @@ package controllers
 import (
 	"encoding/json"
 	"io/ioutil"
+	"log"
 	"os"
 
 	"github.com/leozz37/cartesian/db"
@@ -32,7 +33,7 @@ func createCoordinates(coordinates []models.Coordinate) {
 	for _, coordinate := range coordinates {
 		err := db.CreateCoordinate(coordinate)
 		if err != nil {
-			panic(err)
+			log.Fatal(err)
 		}
 	}
 }

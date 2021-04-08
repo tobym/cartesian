@@ -1,0 +1,11 @@
+version: "3.6"
+
+services:
+  cartesian:
+    environment:
+      - PORT=${PORT}
+    image: cartesian
+    build:
+      context: .
+    ports:
+      - ${PORT}:${PORT}

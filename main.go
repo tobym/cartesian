@@ -1,15 +1,14 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"os"
+
+	"github.com/leozz37/cartesian/db"
+	"github.com/leozz37/cartesian/models"
+)
 
 func main() {
-	r := gin.Default()
-
-	r.GET("/", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "Hello World",
-		})
-	})
-
-	r.Run()
+	// Init Database and Migrate coordiantes model
+	db.ConnectMySQL("mysql", os.Getenv("DATABASE_URL"))
+	db.AutoMigration(models.Coordinate{})
 }

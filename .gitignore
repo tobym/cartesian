@@ -3,3 +3,6 @@ cartesian
 
 # Coverage files
 coverage.out
+
+# Database Data
+data/.mysql-data

@@ -14,7 +14,7 @@ func getCoordinatesFromFile(filePath string) []models.Coordinate {
 
 	jsonFile, err := os.Open(filePath)
 	if err != nil {
-		log.Println("Error reading points JSON file.")
+		log.Println("Error reading JSON file.")
 	}
 
 	byteValue, _ := ioutil.ReadAll(jsonFile)

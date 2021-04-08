@@ -30,13 +30,13 @@ By far, the easiest way to get everything running is with `docker-compose`. See 
 To build the binary, run the following:
 
 ```shell
-$ go build -o serasa-negativacao
+$ go build -o cartesian
 ```
 
 To run the binary, run the following:
 
 ```shell
-$ ./serasa-negativacao
+$ ./cartesian
 ```
 
 Or simply:

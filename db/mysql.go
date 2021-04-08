@@ -22,7 +22,15 @@ func AutoMigration(model interface{}) {
 }
 
 func CreateCoordinate(coordinate models.Coordinate) error {
-	err := MySQL.FirstOrCreate(&coordinate).Error
+	err := MySQL.Create(&coordinate).Error
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func DeleteCoordinates() error {
+	err := MySQL.Delete(&models.Coordinate{}).Error
 	if err != nil {
 		return err
 	}

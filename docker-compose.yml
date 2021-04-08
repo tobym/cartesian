@@ -4,6 +4,8 @@ services:
   cartesian:
     environment:
       - PORT=${PORT}
+      - DATABASE_URL=root:root@tcp(mysql:3306)/cartesian
+      - DATA_PATH=$PWD/data/points.js
     image: cartesian
     build:
       context: .
@@ -32,6 +34,8 @@ services:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       timeout: 5s
       retries: 5
+    cap_add:
+      - SYS_NICE
 
 networks:
   cartesian_public:

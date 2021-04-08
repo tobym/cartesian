@@ -14,6 +14,8 @@ This is an API for Civi test.
   - [Makefile](#makefile)
   - [Docker](#docker)
   - [Docker-compose](#docker-compose)
+- [Testing](#testing)
+  - [Unit Tests](#unit-tests)
 
 ## Quick-start
 
@@ -84,3 +86,21 @@ $ export PORT=8080
 
 $ docker-compose up
 ```
+
+## Testing
+
+The unit testes are written with the default testing tool of Golang.
+
+### Unit Tests
+
+To run the unit tests, do the following:
+
+```shell
+$ go test -v ./...
+```
+
+To run the tests with coverage, do the following:
+
+```shell
+$ go test -v -covermode=count ./...
+````

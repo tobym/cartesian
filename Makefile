@@ -14,4 +14,4 @@ deps:
 
 ## test: Run tests with verbose mode
 test:
-	@go test -v -covermode=count -coverprofile=coverage.out
+	@go test -v -covermode=count -coverprofile=coverage.out ./...

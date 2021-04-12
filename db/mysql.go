@@ -1,4 +1,3 @@
-// package db
 package db
 
 import (
@@ -16,7 +15,6 @@ func ConnectMySQL(databseType, dsn string) {
 	if err != nil {
 		panic(err)
 	}
-
 	MySQL = database
 }
 

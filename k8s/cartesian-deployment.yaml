@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: cartesian
+  name: cartesian
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: cartesian
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        io.kompose.network/cartesian_public: "true"
+        io.kompose.service: cartesian
+    spec:
+      containers:
+        - env:
+            - name: DATABASE_URL
+              value: root:root@tcp(mysql:3306)/cartesian
+            - name: DATA_PATH
+              value: /Users/leo/Development/cartesian/k8s/data/points.js
+            - name: PORT
+              value: "3000"
+          image: cartesian
+          name: cartesian
+          ports:
+            - containerPort: 3000
+          resources: {}
+      restartPolicy: Always
+status: {}

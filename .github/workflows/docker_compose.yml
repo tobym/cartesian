@@ -8,12 +8,11 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    env:
+        PORT: 3000
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-
-      - name: Source env
-        run: source .env.example
 
       - name: Build Docker Image
         run: docker-compose build

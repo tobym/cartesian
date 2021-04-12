@@ -7,3 +7,9 @@ coverage.out
 
 # Database Data
 data/.mysql-data
+
+# Terraform
+.terraform
+*.tfstate
+*.hcl
+*.tfstate.*backup

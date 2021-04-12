@@ -19,7 +19,7 @@ func main() {
 	}
 
 	// Init Database and Migrate coordiantes model
-	db.ConnectMySQL("mysql", os.Getenv("DATABASE_DSN"))
+	db.ConnectMySQL(os.Getenv("DATABASE_TYPE"), os.Getenv("DATABASE_DSN"))
 	db.AutoMigration(models.Coordinate{})
 
 	// Get data from JSON file and save to DB

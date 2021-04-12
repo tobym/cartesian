@@ -8,17 +8,18 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./terraform
     steps:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
 
     - name: Terraform init
       run: terraform init
-      working-directory: terraform/
 
     - name: Terraform plan
       run: terraform plan  -no-color
-      working-directory: terraform/
 
     - run: echo ${{ steps.plan.outputs.stdout }}
     - run: echo ${{ steps.plan.outputs.stderr }}

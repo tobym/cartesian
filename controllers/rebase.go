@@ -11,9 +11,9 @@ import (
 func Rebase() {
 	models.DeleteCoordinates()
 
-	filepath := os.Getenv("DATA_PATH")
+	filePath := os.Getenv("DATA_PATH")
 
-	coordinates, err := models.GetCoordinatesFromFile(filepath)
+	coordinates, err := models.GetCoordinatesFromFile(filePath)
 	if err != nil {
 		panic(err)
 	}

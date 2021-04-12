@@ -9,6 +9,7 @@ func InitRoutes() {
 	r := gin.Default()
 
 	r.GET("/api/points", handler.FindDistance)
+	r.GET("points", handler.GetPoints)
 	r.NoRoute(noRoute)
 
 	r.Run()

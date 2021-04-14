@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"log"
+	"math"
 	"os"
 )
 
@@ -38,4 +39,11 @@ func CreateCoordinates(coordinates []Coordinate) {
 			log.Fatal(err)
 		}
 	}
+}
+
+// CalculateManhattanDistance between two coordiantes
+func CalculateManhattanDistance(point1, point2 Coordinate) float64 {
+	distanceXPoints := math.Abs(point1.X - point2.X)
+	distanceYPoints := math.Abs(point1.Y - point2.Y)
+	return distanceXPoints + distanceYPoints
 }

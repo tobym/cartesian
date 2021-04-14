@@ -49,3 +49,25 @@ func TestCreateCoordiantesSuccess(t *testing.T) {
 		t.Error("Y coordiante is differente")
 	}
 }
+
+func TestCalculateManhattanDistance(t *testing.T) {
+	// First test suite
+	point1 := Coordinate{X: 63, Y: -72}
+	point2 := Coordinate{X: -94, Y: 89}
+
+	expectedResult := 318.0
+	result := CalculateManhattanDistance(point1, point2)
+	if expectedResult != result {
+		t.Errorf("Result expected: %f, got: %f", expectedResult, result)
+	}
+
+	// Second test suite
+	point1 = Coordinate{X: 30, Y: 50}
+	point2 = Coordinate{X: -90, Y: 60}
+
+	expectedResult = 130.0
+	result = CalculateManhattanDistance(point1, point2)
+	if expectedResult != result {
+		t.Errorf("Result expected: %f, got: %f", expectedResult, result)
+	}
+}

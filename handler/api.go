@@ -2,12 +2,12 @@ package handler
 
 import (
 	"errors"
-	"fmt"
-	"log"
 	"net/http"
 	"regexp"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
+	"github.com/leozz37/cartesian/models"
 )
 
 func FindDistances(c *gin.Context) {
@@ -17,12 +17,44 @@ func FindDistances(c *gin.Context) {
 
 	err := validateQuery(x, y, distance)
 	if err != nil {
-		log.Println(err)
 		c.JSON(http.StatusBadRequest, gin.H{"message": err.Error()})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"message": fmt.Sprintf("%s | %s | %s", distance, x, y)})
+	// Converting string values to float
+	distanceFloat, _ := strconv.ParseFloat(distance, 64)
+	xFloat, _ := strconv.ParseFloat(x, 64)
+	yFloat, _ := strconv.ParseFloat(y, 64)
+
+	// Getting machinting distances
+	coordiante := models.Coordinate{X: xFloat, Y: yFloat}
+	matches, err := getWithinDistances(coordiante, distanceFloat)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"message": err})
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": matches})
+}
+
+func getWithinDistances(coordinate models.Coordinate, distance float64) ([]models.Coordinate, error) {
+	var matchingDistances []models.Coordinate
+
+	// Getting coordinates from file
+	coordinates, err := models.FindCoordinates()
+	if err != nil {
+		return nil, err
+	}
+
+	// Comparing the manhattan distance with the coordinates
+	// from the file
+	for _, point := range coordinates {
+		manhattanDistance := models.CalculateManhattanDistance(coordinate, point)
+		if manhattanDistance == distance {
+			matchingDistances = append(matchingDistances, point)
+		}
+	}
+
+	return matchingDistances, nil
 }
 
 func validateQueryValue(value string) error {
